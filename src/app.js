@@ -25,10 +25,14 @@ var ajax = require('ajax');
 //------------------------------------------------------------------------------
 /* define sources */
 var sources = [
-  {name:'PNB Singapore'   , match:/Php<\/strong>(.*?)<\/span>/, url:'http://www.pnb.com.ph/singapore/Rates/ExchangeRates.asp' },
-  {name:'I-Remit'         , match:/<div align='center'>(.*?)<\/div>/, url:'http://www.myiremit.com/forex.php?forex_c_code=ISINPL' },
-  {name:'Metro Remittance', match:/The Philippines: 1 SGD = (.*?) PHP/,url:'https://www.facebook.com/metroremittancecenter'},
-  {name:'A Express Remit' , match:/1 = PHP (.*?)<\/span>/,url:'https://www.facebook.com/aexpressremit'}
+  {name:'PNB Singapore'   , icon:'images/m-pnb.png',
+   match:/Php<\/strong>(.*?)<\/span>/, url:'http://www.pnb.com.ph/singapore/Rates/ExchangeRates.asp' },
+  {name:'I-Remit'         , icon:'images/m-iremit.png',
+   match:/<div align='center'>(.*?)<\/div>/, url:'http://www.myiremit.com/forex.php?forex_c_code=ISINPL' },
+  {name:'Metro Remittance', icon:'images/m-metro.png',
+   match:/The Philippines: 1 SGD = (.*?) PHP/,url:'https://www.facebook.com/metroremittancecenter'},
+  {name:'A Express Remit' , icon:'images/menu_icon.png',
+   match:/1 = PHP (.*?)<\/span>/,url:'https://www.facebook.com/aexpressremit'}
 ];
 
 //------------------------------------------------------------------------------
@@ -60,8 +64,9 @@ function updateRate(i) {
 //------------------------------------------------------------------------------
 /* Loop through all sources and update the rates */
 function updateRates() {
+  
   for (var j=0;j<sources.length;j++) {
-    menu.item(0, j, {title : 'Updating...', subtitle:sources[j].name} );
+    menu.item(0, j, {title : 'Updating...', subtitle:sources[j].name, icon:sources[j].icon} );
   }
   for (var i=0;i<sources.length;i++) {
     updateRate(i);

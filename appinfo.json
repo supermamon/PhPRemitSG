@@ -10,7 +10,6 @@
         "media": [
             {
                 "file": "images/menu_icon.png",
-                "menuIcon": true,
                 "name": "IMAGE_MENU_ICON",
                 "type": "png"
             },
@@ -28,6 +27,27 @@
                 "file": "fonts/UbuntuMono-Regular.ttf",
                 "name": "MONO_FONT_14",
                 "type": "font"
+            },
+            {
+                "file": "images/a-logo.png",
+                "menuIcon": true,
+                "name": "IMAGES_A_LOGO_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/m-pnb.png",
+                "name": "IMAGES_M_PNB_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/m-metro.png",
+                "name": "IMAGES_M_METRO_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/m-iremit.png",
+                "name": "IMAGES_M_IREMIT_PNG",
+                "type": "png"
             }
         ]
     },
