@@ -30,9 +30,10 @@ var sources = [
   {name:'I-Remit'         , icon:'images/m-iremit.png',
    match:/<div align='center'>(.*?)<\/div>/, url:'http://www.myiremit.com/forex.php?forex_c_code=ISINPL' },
   {name:'Metro Remittance', icon:'images/m-metro.png',
-   match:/The Philippines: 1 SGD = (.*?) PHP/,url:'https://www.facebook.com/metroremittancecenter'},
+   match:/The Philippines: 1 SGD = (.*?) PHP/,url:'https://www.facebook.com/metroremittancecenter'}
+  /*,
   {name:'A Express Remit' , icon:'images/menu_icon.png',
-   match:/1 = PHP (.*?)<\/span>/,url:'https://www.facebook.com/aexpressremit'}
+   match:/1 = PHP (.*?)<\/span>/,url:'https://www.facebook.com/aexpressremit'}*/
 ];
 
 //------------------------------------------------------------------------------
@@ -46,6 +47,7 @@ menu.on('select', function(e) {
 //------------------------------------------------------------------------------
 /* Update the rate from a single source */
 function updateRate(i) {
+  try {
     ajax(
       {
         url: sources[i].url,
@@ -53,13 +55,24 @@ function updateRate(i) {
         type: 'html'
       },
       function(data) {
+        try {
         var rate = data.match(sources[i].match)[1];
         menu.item(0, i, {title : ('PhP ' + rate) } );
+        } 
+        catch(e){
+          menu.item(0,i, {title:'Match Error'});
+        }
       },
       function(error) {
         menu.item(0, i, {title : 'Unavailable'} );
       }
     );  
+  } 
+  catch(e) {
+    console.log(e);
+    menu.item(0,i, {title:'Error'});
+    
+    }
 } //function
 //------------------------------------------------------------------------------
 /* Loop through all sources and update the rates */
